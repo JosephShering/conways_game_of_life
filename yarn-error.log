@@ -1,0 +1,36 @@
+Arguments: 
+  /Users/josephshering/.nvm/versions/node/v12.8.1/bin/node /Users/josephshering/.yarn/bin/yarn.js init
+
+PATH: 
+  /Users/josephshering/.rvm/gems/ruby-2.6.3/bin:/Users/josephshering/.rvm/gems/ruby-2.6.3@global/bin:/Users/josephshering/.rvm/rubies/ruby-2.6.3/bin:/Users/josephshering/.yarn/bin:/Users/josephshering/.config/yarn/global/node_modules/.bin:/Users/josephshering/.nvm/versions/node/v12.8.1/bin:/Library/Frameworks/Python.framework/Versions/3.8/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/josephshering/.rvm/bin
+
+Yarn version: 
+  1.22.0
+
+Node version: 
+  12.8.1
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (/Users/josephshering/.yarn/lib/cli.js:136987:13)
+      at Interface.emit (events.js:203:13)
+      at Interface._ttyWrite (readline.js:880:16)
+      at ReadStream.onkeypress (readline.js:191:10)
+      at ReadStream.emit (events.js:203:13)
+      at emitKeys (internal/readline/utils.js:414:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (readline.js:1146:36)
+      at ReadStream.emit (events.js:203:13)
+      at addChunk (_stream_readable.js:295:12)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
