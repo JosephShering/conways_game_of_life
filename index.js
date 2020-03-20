@@ -41,7 +41,7 @@ function update() {
     setInterval(() => {
         render();
         iterate();
-    }, 2000);
+    }, 600);
 }
 
 function iterate() {
@@ -81,6 +81,8 @@ function getNeighbors(rowIndex, colIndex) {
             livingNeighbors += grid[rowIndex + i][colIndex + j];
         }
     }
+
+    livingNeighbors -= grid[rowIndex][colIndex];
 
     return livingNeighbors;
 }
