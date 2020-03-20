@@ -14,7 +14,7 @@
 const deadCellChar = String.fromCharCode(9617);
 const aliveCellChar = String.fromCharCode(9619);
 const size = 15
-const grid = [];
+let grid = [];
 
 buildGrid();
 makeLivingCells();
@@ -31,9 +31,10 @@ function buildGrid() {
 }
 
 function makeLivingCells() {
-    grid[5][5] = 1;
     grid[5][6] = 1;
-    grid[6][5] = 1;
+    grid[6][7] = 1;
+    grid[7][6] = 1;
+    grid[6][6] = 1;
 }
 
 function update() {
@@ -41,26 +42,35 @@ function update() {
     setInterval(() => {
         render();
         iterate();
-    }, 600);
+    }, 200);
 }
 
 function iterate() {
+    let nextGrid = grid.map(row => row.slice());
+
     for(let rowIndex = 1; rowIndex < size; rowIndex += 1) {
         for(let colIndex = 1; colIndex < size; colIndex += 1) {
-            const neighbors = getNeighbors(rowIndex, colIndex);
+            const livingNeighbors = getLivingNeighbors(rowIndex, colIndex);
+            const isAlive = !!grid[rowIndex][colIndex];
+            const isLonely = isAlive && livingNeighbors < 2;
+            const isCrowded = isAlive && livingNeighbors > 3;
 
-            if(neighbors > 3 || neighbors < 2) {
-                grid[rowIndex][colIndex] = 0;
-            } else {
-                grid[rowIndex][colIndex] = 1;
+            if(isLonely || isCrowded) {
+                nextGrid[rowIndex][colIndex] = 0;
+            }
+            
+            if(!isAlive && livingNeighbors === 3) {
+                nextGrid[rowIndex][colIndex] = 1;
             }
         }
     }
+
+    grid = nextGrid;
 }
 
 function render() {
-    for(let rowIndex = 0; rowIndex <= size; rowIndex += 1) {
-        for(let colIndex = 0; colIndex <= size; colIndex += 1) {
+    for(let rowIndex = 1; rowIndex < size; rowIndex += 1) {
+        for(let colIndex = 1; colIndex < size; colIndex += 1) {
             if(grid[rowIndex][colIndex]) {
                 process.stdout.write(aliveCellChar);
             } else {
@@ -71,10 +81,10 @@ function render() {
         process.stdout.write('\n');
     }
 
-    process.stdout.moveCursor(0, -grid.length);
+    process.stdout.moveCursor(0, -grid.length+2);
 }
 
-function getNeighbors(rowIndex, colIndex) {
+function getLivingNeighbors(rowIndex, colIndex) {
     let livingNeighbors = 0;
     for(let i = -1; i <= 1; i += 1){
         for(let j = -1; j <= 1; j += 1) {
