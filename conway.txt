@@ -31,13 +31,10 @@ function buildGrid() {
 }
 
 function makeLivingCells() {
-    for(let rowIndex = 1; rowIndex < size; rowIndex += 1) {
-        for(let colIndex = 1; colIndex < size; colIndex += 1) {
-            if(Math.random() * 100 + 1 <= 40) {
-                grid[rowIndex][colIndex] = 1;
-            }
-        }
-    }
+    grid[5][6] = 1;
+    grid[6][7] = 1;
+    grid[7][6] = 1;
+    grid[6][6] = 1;
 }
 
 function update() {
